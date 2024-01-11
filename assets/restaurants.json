@@ -1,0 +1,562 @@
+[
+        {
+            "id": "rqdv5juczeskfw1e867",
+            "name": "Melting Pot",
+            "description": "Nikmati perjalanan kuliner yang tak tertandingi di Melting Pot. Terletak di kota yang penuh semangat, Medan, restoran kami adalah perpaduan harmonis antara kecanggihan modern dan cita rasa tradisional Italia. Rasakan atmosfer yang mengundang saat Anda menikmati berbagai hidangan yang disajikan dengan sempurna. Mulai dari Paket Rosemary yang menggoda hingga Toastie Salmon yang lezat, setiap suapan adalah simfoni rasa dan tekstur. Menu kami juga memiliki kreasi inovatif seperti Bebek Crepes yang lezat dan Salad Lengkeng yang menyegarkan, menjamin pengalaman makan yang memenuhi setiap selera. Lengkapi hidangan Anda dengan beragam minuman kami, mulai dari Es Krim yang kaya hingga kesegaran Jus Jeruk.",
+            "city": "Medan",
+            "address": "Jln. Pandeglang no 19",
+            "pictureId": "14",
+            "categories": [
+                {
+                    "name": "Italia"
+                },
+                {
+                    "name": "Modern"
+                }
+            ],
+            "menus": {
+                "foods": [
+                    {
+                        "name": "Paket rosemary"
+                    },
+                    {
+                        "name": "Toastie salmon"
+                    },
+                    {
+                        "name": "Bebek crepes"
+                    },
+                    {
+                        "name": "Salad lengkeng"
+                    }
+                ],
+                "drinks": [
+                    {
+                        "name": "Es krim"
+                    },
+                    {
+                        "name": "Sirup"
+                    },
+                    {
+                        "name": "Jus apel"
+                    },
+                    {
+                        "name": "Jus jeruk"
+                    },
+                    {
+                        "name": "Coklat panas"
+                    },
+                    {
+                        "name": "Air"
+                    },
+                    {
+                        "name": "Es kopi"
+                    },
+                    {
+                        "name": "Jus alpukat"
+                    },
+                    {
+                        "name": "Jus mangga"
+                    },
+                    {
+                        "name": "Teh manis"
+                    },
+                    {
+                        "name": "Kopi espresso"
+                    },
+                    {
+                        "name": "Minuman soda"
+                    },
+                    {
+                        "name": "Jus tomat"
+                    }
+                ]
+            },
+            "rating": 4.2
+        },
+        {
+            "id": "s1knt6za9kkfw1e867",
+            "name": "Kafe Kita",
+            "description": "Selamat datang di Kafe Kita, tempat di mana cita rasa bertemu kenyamanan. Terletak di kota Gorontalo, kami mengundang Anda untuk merasakan suasana hangat dan santai di tengah kehidupan sehari-hari. Kafe Kita bukan hanya tempat makan, tapi juga tempat untuk berbagi cerita dan kenangan. Nikmati hidangan lezat kami yang disajikan dengan cinta, mulai dari Kari Kacang dan Telur yang menggugah selera, hingga Roket Penne yang memikat lidah. Kami juga menyajikan minuman segar seperti Jus Tomat yang menyegarkan dan Kopi Espresso yang membangkitkan semangat. Selamat menikmati!",
+            "city": "Gorontalo",
+            "address": "Jln. Pustakawan no 9",
+            "pictureId": "25",
+            "categories": [
+                {
+                    "name": "Sop"
+                },
+                {
+                    "name": "Modern"
+                }
+            ],
+            "menus": {
+                "foods": [
+                    {
+                        "name": "Kari kacang dan telur"
+                    },
+                    {
+                        "name": "Ikan teri dan roti"
+                    },
+                    {
+                        "name": "roket penne"
+                    },
+                    {
+                        "name": "Salad lengkeng"
+                    },
+                    {
+                        "name": "Tumis leek"
+                    },
+                    {
+                        "name": "Salad yuzu"
+                    },
+                    {
+                        "name": "Sosis squash dan mint"
+                    }
+                ],
+                "drinks": [
+                    {
+                        "name": "Jus tomat"
+                    },
+                    {
+                        "name": "Minuman soda"
+                    },
+                    {
+                        "name": "Jus apel"
+                    },
+                    {
+                        "name": "Jus mangga"
+                    },
+                    {
+                        "name": "Es krim"
+                    },
+                    {
+                        "name": "Kopi espresso"
+                    },
+                    {
+                        "name": "Jus alpukat"
+                    },
+                    {
+                        "name": "Coklat panas"
+                    },
+                    {
+                        "name": "Es kopi"
+                    },
+                    {
+                        "name": "Teh manis"
+                    },
+                    {
+                        "name": "Sirup"
+                    },
+                    {
+                        "name": "Jus jeruk"
+                    }
+                ]
+            },
+            "rating": 4
+        },
+        {
+            "id": "w9pga3s2tubkfw1e867",
+            "name": "Bring Your Phone Cafe",
+            "description": "Terletak di Surabaya, kami menghadirkan suasana modern yang nyaman dan cita rasa Italia yang autentik. Di sini, Anda dapat menikmati hidangan lezat mulai dari Salad Lengkeng yang segar, Sosis Squash dan Mint yang inovatif, hingga Toastie Salmon yang menggoda selera. Menu kami juga menawarkan beragam pilihan, seperti Sup Kohlrabi yang lezat dan Matzo Farfel yang unik. Tak lupa, minuman kami seperti Kopi Espresso yang kental dan Coklat Panas yang memanjakan lidah akan melengkapi pengalaman bersantap Anda.",
+            "city": "Surabaya",
+            "address": "Jln. Belimbing Timur no 27",
+            "pictureId": "03",
+            "categories": [
+                {
+                    "name": "Modern"
+                },
+                {
+                    "name": "Italia"
+                }
+            ],
+            "menus": {
+                "foods": [
+                    {
+                        "name": "Salad lengkeng"
+                    },
+                    {
+                        "name": "Sosis squash dan mint"
+                    },
+                    {
+                        "name": "Toastie salmon"
+                    },
+                    {
+                        "name": "Salad yuzu"
+                    },
+                    {
+                        "name": "Matzo farfel"
+                    },
+                    {
+                        "name": "Kari terong"
+                    },
+                    {
+                        "name": "roket penne"
+                    },
+                    {
+                        "name": "Napolitana"
+                    },
+                    {
+                        "name": "Daging Sapi"
+                    },
+                    {
+                        "name": "Bebek crepes"
+                    },
+                    {
+                        "name": "Sup Kohlrabi"
+                    },
+                    {
+                        "name": "Ikan teri dan roti"
+                    },
+                    {
+                        "name": "Tumis leek"
+                    }
+                ],
+                "drinks": [
+                    {
+                        "name": "Kopi espresso"
+                    },
+                    {
+                        "name": "Coklat panas"
+                    },
+                    {
+                        "name": "Jus jeruk"
+                    },
+                    {
+                        "name": "Jus apel"
+                    },
+                    {
+                        "name": "Minuman soda"
+                    },
+                    {
+                        "name": "Air"
+                    },
+                    {
+                        "name": "Es kopi"
+                    }
+                ]
+            },
+            "rating": 4.2
+        },
+        {
+            "id": "uewq1zg2zlskfw1e867",
+            "name": "Kafein",
+            "description": "Selamat datang di Kafein, tempat seru buat nyicipin makanan enak! Ada suasana Italia-Jawa yang unik di Aceh, jadi langsung aja mampir. Mulai dari Salad Lengkeng yang segar sampe Roket Penne yang bikin nagih, menu di sini gabungin cita rasa Italia dan Jawa yang oke punya. Kalo haus, coba deh Es Teh yang segar atau Kopi Espresso yang kental. Ketemu kita di Jln. Belimbing Timur no 27, di mana setiap hidangan punya cerita rasa sendiri. Selamat menikmati suasana kafein yang kece!",
+            "city": "Aceh",
+            "address": "Jln. Belimbing Timur no 27",
+            "pictureId": "15",
+            "categories": [
+                {
+                    "name": "Italia"
+                },
+                {
+                    "name": "Jawa"
+                }
+            ],
+            "menus": {
+                "foods": [
+                    {
+                        "name": "Salad lengkeng"
+                    },
+                    {
+                        "name": "Kari terong"
+                    },
+                    {
+                        "name": "Sosis squash dan mint"
+                    },
+                    {
+                        "name": "Napolitana"
+                    },
+                    {
+                        "name": "Salad yuzu"
+                    },
+                    {
+                        "name": "Tumis leek"
+                    },
+                    {
+                        "name": "Ikan teri dan roti"
+                    },
+                    {
+                        "name": "Kari kacang dan telur"
+                    },
+                    {
+                        "name": "Toastie salmon"
+                    },
+                    {
+                        "name": "Bebek crepes"
+                    },
+                    {
+                        "name": "Paket rosemary"
+                    },
+                    {
+                        "name": "Sup Kohlrabi"
+                    },
+                    {
+                        "name": "roket penne"
+                    }
+                ],
+                "drinks": [
+                    {
+                        "name": "Minuman soda"
+                    },
+                    {
+                        "name": "Es teh"
+                    },
+                    {
+                        "name": "Jus tomat"
+                    },
+                    {
+                        "name": "Coklat panas"
+                    },
+                    {
+                        "name": "Jus jeruk"
+                    },
+                    {
+                        "name": "Air"
+                    },
+                    {
+                        "name": "Kopi espresso"
+                    },
+                    {
+                        "name": "Es kopi"
+                    },
+                    {
+                        "name": "Sirup"
+                    },
+                    {
+                        "name": "Jus alpukat"
+                    },
+                    {
+                        "name": "Jus mangga"
+                    },
+                    {
+                        "name": "Jus apel"
+                    },
+                    {
+                        "name": "Es krim"
+                    }
+                ]
+            },
+            "rating": 4.6
+        },
+        {
+            "id": "ygewwl55ktckfw1e867",
+            "name": "Istana Emas",
+            "description": "Selamat datang di Istana Emas, tempat seru buat makan-makan! Di Balikpapan, kita punya makanan enak dan tempat yang asik abis. Ada Bali vibes di sini, jadi suasana nya beda. Mulai dari Daging Sapi yang mantap, Bebek Crepes yang bikin nagih, sampe Toastie Salmon yang jadi favorit. Jangan lupa coba minuman kita juga, ada Es Teh yang seger, Jus Mangga yang manis, sampe Kopi Espresso yang bikin semangat. Alamatnya di Jln. Belimbing Timur no 27, datang aja langsung buat pengalaman makan yang beda dan seru di Istana Emas. Enjoy makanan enak dan suasana Bali yang cozy!",
+            "city": "Balikpapan",
+            "address": "Jln. Belimbing Timur no 27",
+            "pictureId": "05",
+            "categories": [
+                {
+                    "name": "Bali"
+                }
+            ],
+            "menus": {
+                "foods": [
+                    {
+                        "name": "Daging Sapi"
+                    },
+                    {
+                        "name": "Bebek crepes"
+                    },
+                    {
+                        "name": "Toastie salmon"
+                    },
+                    {
+                        "name": "Kari terong"
+                    },
+                    {
+                        "name": "Paket rosemary"
+                    },
+                    {
+                        "name": "Salad lengkeng"
+                    }
+                ],
+                "drinks": [
+                    {
+                        "name": "Sirup"
+                    },
+                    {
+                        "name": "Jus mangga"
+                    },
+                    {
+                        "name": "Es teh"
+                    },
+                    {
+                        "name": "Jus jeruk"
+                    },
+                    {
+                        "name": "Teh manis"
+                    },
+                    {
+                        "name": "Kopi espresso"
+                    },
+                    {
+                        "name": "Es kopi"
+                    },
+                    {
+                        "name": "Minuman soda"
+                    },
+                    {
+                        "name": "Jus alpukat"
+                    },
+                    {
+                        "name": "Jus tomat"
+                    },
+                    {
+                        "name": "Es krim"
+                    },
+                    {
+                        "name": "Coklat panas"
+                    }
+                ]
+            },
+            "rating": 4.5
+        },
+        {
+            "id": "fnfn8mytkpmkfw1e867",
+            "name": "Makan mudah",
+            "description": "Selamat datang di Makan Mudah, tempatnya makan enak tanpa ribet! Berlokasi di Medan, kita hadir dengan menu-menu Jawa yang lezat dan suasana yang cozy. Alamatnya di Jln. Pandeglang no 19, langsung aja mampir buat pengalaman makan yang simpel dan enak. Coba deh Kari Kacang dan Telur yang gurih, Toastie Salmon yang bikin nagih, sampe Daging Sapi yang juicy. Jangan lupa cicipin minuman segar kita juga, mulai dari Minuman Soda yang seger, Jus Apel yang manis, sampe Es Teh yang pas buat teman makan. Selamat menikmati makanan lezat dan suasana santai di Makan Mudah!",
+            "city": "Medan",
+            "address": "Jln. Pandeglang no 19",
+            "pictureId": "22",
+            "categories": [
+                {
+                    "name": "Jawa"
+                }
+            ],
+            "menus": {
+                "foods": [
+                    {
+                        "name": "Kari kacang dan telur"
+                    },
+                    {
+                        "name": "Toastie salmon"
+                    },
+                    {
+                        "name": "Matzo farfel"
+                    },
+                    {
+                        "name": "Napolitana"
+                    },
+                    {
+                        "name": "Salad yuzu"
+                    },
+                    {
+                        "name": "Sosis squash dan mint"
+                    },
+                    {
+                        "name": "Daging Sapi"
+                    }
+                ],
+                "drinks": [
+                    {
+                        "name": "Minuman soda"
+                    },
+                    {
+                        "name": "Jus apel"
+                    },
+                    {
+                        "name": "Air"
+                    },
+                    {
+                        "name": "Jus jeruk"
+                    },
+                    {
+                        "name": "Es krim"
+                    },
+                    {
+                        "name": "Es teh"
+                    },
+                    {
+                        "name": "Jus tomat"
+                    },
+                    {
+                        "name": "Coklat panas"
+                    }
+                ]
+            },
+            "rating": 3.7
+        },
+        {
+            "id": "dwg2wt3is19kfw1e867",
+            "name": "Drinky Squash",
+            "description": "Selamat datang di Drinky Squash, tempat asik buat nongkrong dan nyicipin makanan kece! Di Surabaya, kita hadir dengan konsep Jawa-Modern yang unik banget. Langsung aja mampir ke Jln. Pustakawan no 9, tempat di mana suasana cozy dan makanan enak bercampur jadi satu. Cobain Sup Kohlrabi yang seger, Paket Rosemary yang bikin kenyang, sampe Sosis Squash dan Mint yang bikin nagih. Jangan lupa cicipin minuman kita yang keren, mulai dari Es Kopi yang kental, Air segar, sampe Jus Apel yang manis. Selamat menikmati suasana kece dan hidangan lezat di Drinky Squash!",
+            "city": "Surabaya",
+            "address": "Jln. Pustakawan no 9",
+            "pictureId": "18",
+            "categories": [
+                {
+                    "name": "Jawa"
+                },
+                {
+                    "name": "Modern"
+                }
+            ],
+            "menus": {
+                "foods": [
+                    {
+                        "name": "Sup Kohlrabi"
+                    },
+                    {
+                        "name": "Paket rosemary"
+                    },
+                    {
+                        "name": "Tumis leek"
+                    },
+                    {
+                        "name": "Kari terong"
+                    },
+                    {
+                        "name": "roket penne"
+                    },
+                    {
+                        "name": "Sosis squash dan mint"
+                    },
+                    {
+                        "name": "Salad lengkeng"
+                    }
+                ],
+                "drinks": [
+                    {
+                        "name": "Es kopi"
+                    },
+                    {
+                        "name": "Air"
+                    },
+                    {
+                        "name": "Jus apel"
+                    },
+                    {
+                        "name": "Kopi espresso"
+                    },
+                    {
+                        "name": "Teh manis"
+                    },
+                    {
+                        "name": "Jus jeruk"
+                    },
+                    {
+                        "name": "Es teh"
+                    },
+                    {
+                        "name": "Coklat panas"
+                    },
+                    {
+                        "name": "Jus mangga"
+                    },
+                    {
+                        "name": "Es krim"
+                    },
+                    {
+                        "name": "Jus alpukat"
+                    },
+                    {
+                        "name": "Sirup"
+                    },
+                    {
+                        "name": "Minuman soda"
+                    }
+                ]
+            },
+            "rating": 3.9
+        }
+    ]
