@@ -81,7 +81,7 @@ class HomeScreen extends StatelessWidget {
                       child: Hero(
                         tag: restaurant.id,
                         child: Image.network(
-                          'https://restaurant-api.dicoding.dev/imdadges/small/${restaurant.pictureId}',
+                          'https://restaurant-api.dicoding.dev/images/small/${restaurant.pictureId}',
                           fit: BoxFit.cover,
                           errorBuilder: (ctx, error, _) =>
                               const Center(child: Icon(Icons.error, color: Colors.red,)),

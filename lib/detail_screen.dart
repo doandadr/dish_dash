@@ -35,7 +35,7 @@ class DetailScreen extends StatelessWidget {
                 Hero(
                   tag: restaurant.id,
                   child: Image.network(
-                    'https://restaurant-api.dicoding.dev/imadages/medium/${restaurant.pictureId}',
+                    'https://restaurant-api.dicoding.dev/images/medium/${restaurant.pictureId}',
                     height: 200,
                     width: double.maxFinite,
                     fit: BoxFit.cover,
