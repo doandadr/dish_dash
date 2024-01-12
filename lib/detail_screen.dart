@@ -39,6 +39,13 @@ class DetailScreen extends StatelessWidget {
                     height: 200,
                     width: double.maxFinite,
                     fit: BoxFit.cover,
+                    errorBuilder: (ctx, error, _) => Container(
+                        height: 200,
+                        child: const Center(
+                            child: Icon(
+                          Icons.error,
+                          color: Colors.red,
+                        ))),
                   ),
                 ),
                 SafeArea(

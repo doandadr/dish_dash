@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:dish_dash/detail_screen.dart';
 import 'package:dish_dash/model/restaurant.dart';
 import 'package:dish_dash/style.dart';
 import 'package:flutter/material.dart';
@@ -14,8 +15,8 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: const Text(
-            'Browse Restaurants',
-            style: TextStyle(color: primaryColor),
+            'Restaurants',
+            style: TextStyle(color: primaryColor, fontFamily: 'Hero'),
           ),
           elevation: 6,
           shadowColor: Colors.black,
@@ -57,90 +58,101 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget _buildRestaurantItem(BuildContext context, Restaurant restaurant) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Row(
-        children: [
-          Expanded(
-            flex: 2,
-            child: Stack(
-              alignment: Alignment.bottomCenter,
-              children: [
-                Container(
-                  margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-                  height: 130,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(16),
-                    child: Image.network(
-                        'https://restaurant-api.dicoding.dev/images/small/${restaurant.pictureId}',
-                      fit: BoxFit.cover,
-
+    return InkWell(
+      onTap: () {
+        Navigator.pushNamed(context, DetailScreen.routeName,
+            arguments: restaurant);
+      },
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          children: [
+            Expanded(
+              flex: 2,
+              child: Stack(
+                alignment: Alignment.bottomCenter,
+                children: [
+                  Container(
+                    margin:
+                        const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+                    height: 130,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(16),
+                      child: Hero(
+                        tag: restaurant.id,
+                        child: Image.network(
+                          'https://restaurant-api.dicoding.dev/imdadges/small/${restaurant.pictureId}',
+                          fit: BoxFit.cover,
+                          errorBuilder: (ctx, error, _) =>
+                              const Center(child: Icon(Icons.error, color: Colors.red,)),
+                        ),
+                      ),
                     ),
                   ),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(bottom: 12),
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(15)),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
+                  Container(
+                    margin: const EdgeInsets.only(bottom: 12),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(15)),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Icon(
+                          Icons.star,
+                          color: secondaryColor,
+                          size: 16,
+                        ),
+                        Text(restaurant.rating.toStringAsPrecision(2))
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+            const SizedBox(
+              width: 8,
+            ),
+            Expanded(
+              flex: 3,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    restaurant.name,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Hero',
+                      fontSize: 16,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 6,
+                  ),
+                  Text(
+                    restaurant.categories.map((c) => c.name).join(", "),
+                    style: const TextStyle(fontSize: 12),
+                  ),
+                  const SizedBox(
+                    height: 6,
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
                     children: [
                       const Icon(
-                        Icons.star,
-                        color: secondaryColor,
-                        size: 16,
+                        Icons.location_on,
+                        color: primaryColor,
                       ),
-                      Text(restaurant.rating.toStringAsPrecision(2))
+                      Text(restaurant.city),
                     ],
                   ),
-                )
-              ],
-            ),
-          ),
-          const SizedBox(
-            width: 8,
-          ),
-          Expanded(
-            flex: 3,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(
-                  restaurant.name,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Hero',
-                    fontSize: 16,
-                  ),
-                ),
-                const SizedBox(
-                  height: 6,
-                ),
-                Text(
-                  restaurant.categories.map((c) => c.name).join(", "),
-                  style: const TextStyle(fontSize: 12),
-                ),
-                const SizedBox(
-                  height: 6,
-                ),
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    const Icon(
-                      Icons.location_on,
-                      color: primaryColor,
-                    ),
-                    Text(restaurant.city),
-                  ],
-                ),
-              ],
-            ),
-          )
-        ],
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
