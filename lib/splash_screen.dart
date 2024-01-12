@@ -4,6 +4,8 @@ import 'package:dish_dash/style.dart';
 import 'home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
+  static const routeName = "/splash_screen";
+
   const SplashScreen({super.key});
 
   @override
@@ -11,9 +13,9 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  
   @override
   initState() {
+    super.initState();
     _navigateToHome();
   }
 
@@ -21,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.all(40),
+        padding: const EdgeInsets.all(40),
         color: primaryColor,
         child: Center(
           child: Image.asset('assets/logo.jpg'),
@@ -31,9 +33,8 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void _navigateToHome() async {
-    await Future.delayed(Duration(milliseconds: 1000), () {
-
+    await Future.delayed(const Duration(milliseconds: 1500), () {
+      Navigator.pushReplacementNamed(context, '/homeScreen');
     });
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen()));
   }
 }

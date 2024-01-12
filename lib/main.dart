@@ -1,4 +1,6 @@
+import 'package:dish_dash/detail_screen.dart';
 import 'package:dish_dash/home_screen.dart';
+import 'package:dish_dash/model/restaurant.dart';
 import 'package:dish_dash/splash_screen.dart';
 import 'package:dish_dash/style.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +18,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
+        fontFamily: 'DMSans',
         colorScheme: Theme.of(context).colorScheme.copyWith(
           primary: primaryColor,
           secondary: secondaryColor,
@@ -24,14 +27,13 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: const SplashScreen(),
-      initialRoute: '/',
+      initialRoute: SplashScreen.routeName,
       routes: {
-        '/': (context) => SplashScreen(),
-        '/homeScreen': (context) => const HomeScreen(),
+        SplashScreen.routeName: (context) => const SplashScreen(),
+        HomeScreen.routeName: (context) => const HomeScreen(),
         '/detailScreen': (context) => DetailScreen(
-          ModalRoute.of(context)?.settings.arguments),
-        )
+          restaurant: ModalRoute.of(context)?.settings.arguments as Restaurant
+        ),
       },
     );
   }
