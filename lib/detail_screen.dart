@@ -39,9 +39,9 @@ class DetailScreen extends StatelessWidget {
                     height: 200,
                     width: double.maxFinite,
                     fit: BoxFit.cover,
-                    errorBuilder: (ctx, error, _) => Container(
+                    errorBuilder: (ctx, error, _) => const SizedBox(
                         height: 200,
-                        child: const Center(
+                        child: Center(
                             child: Icon(
                           Icons.error,
                           color: Colors.red,
@@ -111,7 +111,7 @@ class DetailScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 24,
                   ),
                   Row(
@@ -120,7 +120,7 @@ class DetailScreen extends StatelessWidget {
                         Icons.room_service,
                         color: primaryColor,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 8,
                       ),
                       Text(
@@ -129,7 +129,7 @@ class DetailScreen extends StatelessWidget {
                       )
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 8,
                   ),
                   Row(
@@ -138,20 +138,20 @@ class DetailScreen extends StatelessWidget {
                         Icons.location_on,
                         color: primaryColor,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 8,
                       ),
                       Text(
                         '${restaurant.city}, ${restaurant.address}',
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        style: const TextStyle(fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 8,
                   ),
                   Text(restaurant.description),
-                  SizedBox(
+                  const SizedBox(
                     height: 8,
                   ),
                   const Text(
@@ -162,12 +162,12 @@ class DetailScreen extends StatelessWidget {
                         fontSize: 20,
                         color: primaryColor),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 8,
                   ),
                   ...restaurant.menus.foods
                       .map((food) => _buildRestaurantItem(context, food.name)),
-                  SizedBox(
+                  const SizedBox(
                     height: 8,
                   ),
                   const Text(
@@ -178,7 +178,7 @@ class DetailScreen extends StatelessWidget {
                         fontSize: 20,
                         color: primaryColor),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 8,
                   ),
                   ...restaurant.menus.drinks.map(
@@ -215,10 +215,10 @@ class DetailScreen extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 8,
                     ),
-                    AddItemWidget(),
+                    const AddItemWidget(),
                   ],
                 ),
               ),
@@ -263,44 +263,44 @@ class _AddItemWidgetState extends State<AddItemWidget> {
             children: [
               IconButton.outlined(
                   style: OutlinedButton.styleFrom(
-                      side: BorderSide(color: secondaryVariantColor),
+                      side: const BorderSide(color: secondaryVariantColor),
                       foregroundColor: secondaryVariantColor),
                   onPressed: () {
                     setState(() {
                       itemCount--;
                     });
                   },
-                  icon: Icon(Icons.remove)),
-              SizedBox(
+                  icon: const Icon(Icons.remove)),
+              const SizedBox(
                 width: 8,
               ),
               Text(
                 itemCount.toString(),
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 8,
               ),
               IconButton.outlined(
                   style: OutlinedButton.styleFrom(
-                      side: BorderSide(color: secondaryVariantColor),
+                      side: const BorderSide(color: secondaryVariantColor),
                       foregroundColor: secondaryVariantColor),
                   onPressed: () {
                     setState(() {
                       itemCount++;
                     });
                   },
-                  icon: Icon(Icons.add)),
+                  icon: const Icon(Icons.add)),
             ],
           )
         : OutlinedButton(
             style: OutlinedButton.styleFrom(
-                side: BorderSide(color: secondaryVariantColor),
+                side: const BorderSide(color: secondaryVariantColor),
                 foregroundColor: secondaryVariantColor),
-            child: Text(
+            child: const Text(
               'Add',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
