@@ -193,7 +193,6 @@ class DetailScreen extends StatelessWidget {
   }
 
   Widget _buildRestaurantItem(BuildContext context, String item) {
-    // return Text(item);
     return Padding(
       padding: const EdgeInsets.all(8),
       child: Column(
