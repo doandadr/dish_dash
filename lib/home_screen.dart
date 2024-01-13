@@ -30,7 +30,7 @@ class HomeScreen extends StatelessWidget {
         body: SafeArea(
           child: FutureBuilder(
             future: DefaultAssetBundle.of(context)
-                .loadString('assets/restaurants.json'),
+                .loadString('assets/local_restaurant.json'),
             builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
               final List<Restaurant> restaurants =
                   parseRestaurants(snapshot.data);
