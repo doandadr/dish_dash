@@ -1,159 +1,79 @@
-import 'dart:convert';
+import 'dart:io';
 
-import 'package:dish_dash/ui/detail_screen.dart';
-import 'package:dish_dash/data/model/restaurant.dart';
 import 'package:dish_dash/common/style.dart';
+import 'package:dish_dash/ui/restaurant_list_page.dart';
+import 'package:dish_dash/ui/search_page.dart';
+import 'package:dish_dash/ui/settings_page.dart';
+import 'package:dish_dash/widget/platform_widget.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   static const routeName = '/homeScreen';
 
   const HomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int _bottomNavIndex = 0;
+
+  final List<Widget> _listWidget = [
+    const RestaurantListPage(),
+    const SearchPage(),
+  ];
+
+  final List<BottomNavigationBarItem> _bottomNavBarItems = [
+    BottomNavigationBarItem(
+        icon: Icon(
+          Platform.isIOS ? CupertinoIcons.house : Icons.food_bank_outlined,
+        ),
+        label: RestaurantListPage.restaurantListTitle),
+    BottomNavigationBarItem(
+        icon: Icon(
+          Platform.isIOS ? CupertinoIcons.search : Icons.search,
+        ),
+        label: SearchPage.searchTitle),
+
+  ];
+
+  void _onBottomNavTapped(int index) {
+    setState(() {
+      _bottomNavIndex = index;
+    });
+  }
+
+  Widget _buildAndroid(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            'Restaurants',
-            style: TextStyle(color: primaryColor, fontFamily: 'Hero'),
-          ),
-          elevation: 6,
-          shadowColor: Colors.black,
-          centerTitle: false,
-          surfaceTintColor: Colors.transparent,
-          leading: const Icon(
-            Icons.fastfood,
-            color: primaryColor,
-          ),
-        ),
-        body: SafeArea(
-          child: FutureBuilder(
-            future: DefaultAssetBundle.of(context)
-                .loadString('assets/local_restaurant.json'),
-            builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-              final List<Restaurant> restaurants =
-                  parseRestaurants(snapshot.data);
-              return ListView.separated(
-                itemCount: restaurants.length,
-                itemBuilder: (context, index) {
-                  return _buildRestaurantItem(context, restaurants[index]);
-                },
-                separatorBuilder: (BuildContext context, int index) {
-                  return const Divider(
-                    height: 1,
-                  );
-                },
-              );
-            },
-          ),
-        ));
-  }
-
-  List<Restaurant> parseRestaurants(String? json) {
-    if (json == null) return [];
-
-    final List parsed = jsonDecode(json);
-    return parsed.map((json) => Restaurant.fromJson(json)).toList();
-  }
-
-  Widget _buildRestaurantItem(BuildContext context, Restaurant restaurant) {
-    return InkWell(
-      onTap: () {
-        Navigator.pushNamed(context, DetailScreen.routeName,
-            arguments: restaurant);
-      },
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Row(
-          children: [
-            Expanded(
-              flex: 2,
-              child: Stack(
-                alignment: Alignment.bottomCenter,
-                children: [
-                  Container(
-                    margin:
-                        const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-                    height: 130,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(16),
-                      child: Hero(
-                        tag: restaurant.id,
-                        child: Image.network(
-                          'https://restaurant-api.dicoding.dev/images/small/${restaurant.pictureId}',
-                          fit: BoxFit.cover,
-                          errorBuilder: (ctx, error, _) =>
-                              const Center(child: Icon(Icons.error, color: Colors.red,)),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(bottom: 12),
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(15)),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const Icon(
-                          Icons.star,
-                          color: secondaryColor,
-                          size: 16,
-                        ),
-                        Text(restaurant.rating.toStringAsPrecision(2))
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            ),
-            const SizedBox(
-              width: 8,
-            ),
-            Expanded(
-              flex: 3,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text(
-                    restaurant.name,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Hero',
-                      fontSize: 16,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 6,
-                  ),
-                  Text(
-                    restaurant.categories.map((c) => c.name).join(", "),
-                    style: const TextStyle(fontSize: 12),
-                  ),
-                  const SizedBox(
-                    height: 6,
-                  ),
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      const Icon(
-                        Icons.location_on,
-                        color: primaryColor,
-                      ),
-                      Text(restaurant.city),
-                    ],
-                  ),
-                ],
-              ),
-            )
-          ],
-        ),
+      body: _listWidget[_bottomNavIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: primaryColor,
+        currentIndex: _bottomNavIndex,
+        items: _bottomNavBarItems,
+        onTap: _onBottomNavTapped,
+        type: BottomNavigationBarType.shifting,
+        unselectedItemColor: primaryVariantColor,
       ),
     );
+  }
+
+  Widget _buildIos(BuildContext context) {
+    return CupertinoTabScaffold(
+      tabBar: CupertinoTabBar(
+        items: _bottomNavBarItems,
+        activeColor: primaryColor,
+        inactiveColor: primaryVariantColor,
+      ),
+      tabBuilder: (context, index) {
+        return _listWidget[index];
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return PlatformWidget(androidBuilder: _buildAndroid, iosBuilder: _buildIos);
   }
 }
