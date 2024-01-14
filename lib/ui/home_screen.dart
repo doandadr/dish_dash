@@ -23,6 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final List<Widget> _listWidget = [
     const RestaurantListPage(),
     const SearchPage(),
+    const SettingsPage()
   ];
 
   final List<BottomNavigationBarItem> _bottomNavBarItems = [
@@ -36,7 +37,10 @@ class _HomeScreenState extends State<HomeScreen> {
           Platform.isIOS ? CupertinoIcons.search : Icons.search,
         ),
         label: SearchPage.searchTitle),
-
+    BottomNavigationBarItem(
+      icon: Icon(Platform.isIOS ? CupertinoIcons.settings : Icons.settings),
+      label: SettingsPage.settingsTitle,
+    ),
   ];
 
   void _onBottomNavTapped(int index) {
