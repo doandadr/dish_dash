@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:dish_dash/detail_screen.dart';
-import 'package:dish_dash/model/restaurant.dart';
-import 'package:dish_dash/style.dart';
+import 'package:dish_dash/ui/detail_screen.dart';
+import 'package:dish_dash/data/model/restaurant.dart';
+import 'package:dish_dash/common/style.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {

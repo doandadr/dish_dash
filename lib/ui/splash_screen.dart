@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:dish_dash/style.dart';
+import 'package:dish_dash/common/style.dart';
 
 class SplashScreen extends StatefulWidget {
   static const routeName = "/splash_screen";
