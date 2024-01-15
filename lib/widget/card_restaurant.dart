@@ -89,13 +89,6 @@ class CardRestaurant extends StatelessWidget {
                   const SizedBox(
                     height: 6,
                   ),
-                  Text(
-                    restaurant.categories.map((c) => c.name).join(", "),
-                    style: const TextStyle(fontSize: 12),
-                  ),
-                  const SizedBox(
-                    height: 6,
-                  ),
                   Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [

@@ -1,9 +1,10 @@
 import 'package:dish_dash/ui/detail_screen.dart';
 import 'package:dish_dash/ui/home_screen.dart';
-import 'package:dish_dash/data/model/restaurant.dart';
 import 'package:dish_dash/common/style.dart';
 import 'package:dish_dash/ui/splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'data/model/restaurant.dart';
+import 'data/model/restaurant_list_result.dart';
 
 void main() {
   runApp(const MyApp());

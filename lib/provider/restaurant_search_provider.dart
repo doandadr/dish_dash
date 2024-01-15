@@ -1,13 +1,14 @@
 import 'package:dish_dash/data/api/api_service.dart';
 import 'package:dish_dash/data/model/restaurant_search_result.dart';
+import 'package:dish_dash/provider/result_state.dart';
 import 'package:flutter/cupertino.dart';
-
-enum ResultState { loading, hasData, noData, error }
 
 class RestaurantSearchProvider extends ChangeNotifier {
   final ApiService apiService;
 
-  RestaurantSearchProvider({required this.apiService});
+  RestaurantSearchProvider({required this.apiService}) {
+    searchRestaurants('');
+  }
 
   late RestaurantSearchResult _searchResult;
   late ResultState _state;
@@ -20,7 +21,7 @@ class RestaurantSearchProvider extends ChangeNotifier {
 
   ResultState get state => _state;
 
-  Future<dynamic> _searchRestaurants(String query) async {
+  Future<dynamic> searchRestaurants(String query) async {
     try {
       _state = ResultState.loading;
       notifyListeners();
