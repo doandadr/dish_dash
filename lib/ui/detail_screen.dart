@@ -4,7 +4,6 @@ import 'package:dish_dash/provider/restaurant_details_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../data/model/restaurant.dart';
-import '../data/model/restaurant_list_result.dart';
 import '../provider/result_state.dart';
 
 class DetailScreen extends StatelessWidget {
@@ -220,9 +219,6 @@ class DetailScreen extends StatelessWidget {
                       ),
                     );
                   default:
-                    return const Material(
-                      child: Text(''),
-                    );
                     return const Material(
                       child: Text(''),
                     );
