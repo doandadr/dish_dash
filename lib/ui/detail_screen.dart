@@ -1,6 +1,11 @@
 import 'package:dish_dash/common/style.dart';
+import 'package:dish_dash/data/api/api_service.dart';
+import 'package:dish_dash/provider/restaurant_details_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../data/model/restaurant.dart';
+import '../data/model/restaurant_list_result.dart';
+import '../provider/result_state.dart';
 
 class DetailScreen extends StatelessWidget {
   static const routeName = '/detail_screen';
@@ -10,6 +15,15 @@ class DetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+        create: (_) {
+          return RestaurantDetailsProvider(
+              apiService: ApiService(), restaurantId: restaurant.id);
+        },
+        child: _buildRestaurantDetails(context));
+  }
+
+  Widget _buildRestaurantDetails(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -106,85 +120,114 @@ class DetailScreen extends StatelessWidget {
                 ),
               ],
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(
-                    height: 24,
-                  ),
-                  Row(
-                    children: [
-                      const Icon(
-                        Icons.room_service,
-                        color: primaryColor,
+            Consumer<RestaurantDetailsProvider>(
+              builder: (_, provider, __) {
+                switch (provider.state) {
+                  case ResultState.loading:
+                    return const CircularProgressIndicator();
+
+                  case ResultState.hasData:
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(
+                            height: 24,
+                          ),
+                          Row(
+                            children: [
+                              const Icon(
+                                Icons.room_service,
+                                color: primaryColor,
+                              ),
+                              const SizedBox(
+                                width: 8,
+                              ),
+                              Text(
+                                provider.result.restaurant.categories.map((c) => c.name).join(", "),
+                                style: const TextStyle(fontWeight: FontWeight.bold),
+                              )
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 8,
+                          ),
+                          Row(
+                            children: [
+                              const Icon(
+                                Icons.location_on,
+                                color: primaryColor,
+                              ),
+                              const SizedBox(
+                                width: 8,
+                              ),
+                              Text(
+                                '${provider.result.restaurant.city}, ${provider.result.restaurant.address}',
+                                style: const TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 8,
+                          ),
+                          Text(restaurant.description),
+                          const SizedBox(
+                            height: 8,
+                          ),
+                          const Text(
+                            'Food',
+                            style: TextStyle(
+                                fontFamily: 'Hero',
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                                color: primaryColor),
+                          ),
+                          const SizedBox(
+                            height: 8,
+                          ),
+                          ...provider.result.restaurant.menus.foods.map(
+                                  (food) => _buildRestaurantItem(context, food.name)),
+                          const SizedBox(
+                            height: 8,
+                          ),
+                          const Text(
+                            'Drinks',
+                            style: TextStyle(
+                                fontFamily: 'Hero',
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                                color: primaryColor),
+                          ),
+                          const SizedBox(
+                            height: 8,
+                          ),
+                          ...provider.result.restaurant.menus.drinks.map(
+                                  (drink) => _buildRestaurantItem(context, drink.name)),
+                        ],
                       ),
-                      const SizedBox(
-                        width: 8,
+                    );
+                  case ResultState.noData:
+                    return Center(
+                      child: Material(
+                        child: Text(provider.message),
                       ),
-                      Text(
-                        restaurant.categories.map((c) => c.name).join(", "),
-                        style: const TextStyle(fontWeight: FontWeight.bold),
-                      )
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  Row(
-                    children: [
-                      const Icon(
-                        Icons.location_on,
-                        color: primaryColor,
+                    );
+                  case ResultState.error:
+                    return Center(
+                      child: Material(
+                        child: Text("Error: Could not receive data from network"),
                       ),
-                      const SizedBox(
-                        width: 8,
-                      ),
-                      Text(
-                        '${restaurant.city}, ${restaurant.address}',
-                        style: const TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  Text(restaurant.description),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  const Text(
-                    'Food',
-                    style: TextStyle(
-                        fontFamily: 'Hero',
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                        color: primaryColor),
-                  ),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  ...restaurant.menus.foods
-                      .map((food) => _buildRestaurantItem(context, food.name)),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  const Text(
-                    'Drinks',
-                    style: TextStyle(
-                        fontFamily: 'Hero',
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                        color: primaryColor),
-                  ),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  ...restaurant.menus.drinks.map(
-                      (drink) => _buildRestaurantItem(context, drink.name)),
-                ],
-              ),
+                    );
+                  default:
+                    return const Material(
+                      child: Text(''),
+                    );
+                    return const Material(
+                      child: Text(''),
+                    );
+                }
+              },
             )
           ],
         ),
@@ -242,6 +285,15 @@ class DetailScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class CustomProgressIndicator extends StatelessWidget {
+  const CustomProgressIndicator({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
   }
 }
 
