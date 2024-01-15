@@ -80,7 +80,7 @@ class SearchPage extends StatelessWidget {
               } else if (provider.state == ResultState.error) {
                 return const Center(
                   child: Material(
-                    child: Text("Error: Could not receive data from network"),
+                    child: Text("Error: Could not retrieve data from network"),
                   ),
                 );
               } else {

@@ -207,13 +207,13 @@ class DetailScreen extends StatelessWidget {
                       ),
                     );
                   case ResultState.noData:
-                    return Center(
+                    return const Center(
                       child: Material(
-                        child: Text(provider.message),
+                        child: Text("Details not found"),
                       ),
                     );
                   case ResultState.error:
-                    return Center(
+                    return const Center(
                       child: Material(
                         child: Text("Error: Could not receive data from network"),
                       ),
