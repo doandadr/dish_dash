@@ -1,6 +1,7 @@
 import 'package:dish_dash/common/style.dart';
 import 'package:dish_dash/data/model/restaurant.dart';
 import 'package:dish_dash/ui/detail_screen.dart';
+import 'package:dish_dash/widget/favorite_button.dart';
 import 'package:flutter/material.dart';
 
 class CardRestaurant extends StatelessWidget {
@@ -99,6 +100,8 @@ class CardRestaurant extends StatelessWidget {
                       Text(restaurant.city),
                     ],
                   ),
+                  Align( alignment: AlignmentDirectional.bottomEnd,
+                      child: FavoriteButton(restaurant: restaurant,))
                 ],
               ),
             )
