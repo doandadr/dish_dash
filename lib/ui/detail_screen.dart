@@ -1,10 +1,13 @@
 import 'package:dish_dash/common/style.dart';
 import 'package:dish_dash/data/api/api_service.dart';
+import 'package:dish_dash/provider/database_provider.dart';
 import 'package:dish_dash/provider/restaurant_details_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:readmore/readmore.dart';
 import '../data/model/restaurant.dart';
 import '../utils/result_state.dart';
+import '../widget/favorite_button.dart';
 
 class DetailScreen extends StatelessWidget {
   static const routeName = '/detail_screen';
@@ -78,7 +81,7 @@ class DetailScreen extends StatelessWidget {
                             },
                           ),
                         ),
-                        const FavoriteButton(),
+                        FavoriteButton(restaurant: restaurant),
                       ],
                     ),
                   ),
@@ -122,7 +125,8 @@ class DetailScreen extends StatelessWidget {
               builder: (_, provider, __) {
                 switch (provider.state) {
                   case ResultState.loading:
-                    return const CircularProgressIndicator();
+                    return const Expanded(
+                        child: Center(child: CircularProgressIndicator()));
 
                   case ResultState.hasData:
                     return Padding(
@@ -143,8 +147,11 @@ class DetailScreen extends StatelessWidget {
                                 width: 8,
                               ),
                               Text(
-                                provider.result.restaurant.categories.map((c) => c.name).join(", "),
-                                style: const TextStyle(fontWeight: FontWeight.bold),
+                                provider.result.restaurant.categories
+                                    .map((c) => c.name)
+                                    .join(", "),
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold),
                               )
                             ],
                           ),
@@ -162,14 +169,22 @@ class DetailScreen extends StatelessWidget {
                               ),
                               Text(
                                 '${provider.result.restaurant.city}, ${provider.result.restaurant.address}',
-                                style: const TextStyle(fontWeight: FontWeight.bold),
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold),
                               ),
                             ],
                           ),
                           const SizedBox(
                             height: 8,
                           ),
-                          Text(restaurant.description),
+                          ReadMoreText(
+                            restaurant.description,
+                            trimLines: 4,
+                            trimCollapsedText: ' Show More',
+                            trimExpandedText: ' Show Less',
+                            colorClickableText: primaryColor,
+                            style: const TextStyle(),
+                          ),
                           const SizedBox(
                             height: 8,
                           ),
@@ -185,7 +200,8 @@ class DetailScreen extends StatelessWidget {
                             height: 8,
                           ),
                           ...provider.result.restaurant.menus.foods.map(
-                                  (food) => _buildRestaurantItem(context, food.name)),
+                              (food) =>
+                                  _buildRestaurantItem(context, food.name)),
                           const SizedBox(
                             height: 8,
                           ),
@@ -201,7 +217,8 @@ class DetailScreen extends StatelessWidget {
                             height: 8,
                           ),
                           ...provider.result.restaurant.menus.drinks.map(
-                                  (drink) => _buildRestaurantItem(context, drink.name)),
+                              (drink) =>
+                                  _buildRestaurantItem(context, drink.name)),
                         ],
                       ),
                     );
@@ -212,10 +229,11 @@ class DetailScreen extends StatelessWidget {
                       ),
                     );
                   case ResultState.error:
-                    return  Container(
+                    return Container(
                       margin: const EdgeInsets.symmetric(vertical: 16),
                       child: const Material(
-                        child: Text("Error: Could not receive data from network"),
+                        child:
+                            Text("Error: Could not receive data from network"),
                       ),
                     );
                   default:
@@ -360,30 +378,4 @@ class _AddItemWidgetState extends State<AddItemWidget> {
   }
 }
 
-class FavoriteButton extends StatefulWidget {
-  const FavoriteButton({super.key});
 
-  @override
-  State<FavoriteButton> createState() => _FavoriteButtonState();
-}
-
-class _FavoriteButtonState extends State<FavoriteButton> {
-  bool isFavorite = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return CircleAvatar(
-      backgroundColor: Colors.white,
-      child: IconButton(
-          onPressed: () {
-            setState(() {
-              isFavorite = !isFavorite;
-            });
-          },
-          icon: Icon(
-            isFavorite ? Icons.favorite : Icons.favorite_border,
-            color: primaryColor,
-          )),
-    );
-  }
-}
