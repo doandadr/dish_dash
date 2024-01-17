@@ -4,7 +4,7 @@ import 'package:dish_dash/provider/restaurant_details_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../data/model/restaurant.dart';
-import '../provider/result_state.dart';
+import '../utils/result_state.dart';
 
 class DetailScreen extends StatelessWidget {
   static const routeName = '/detail_screen';

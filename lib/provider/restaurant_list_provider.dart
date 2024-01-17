@@ -1,6 +1,6 @@
 import 'package:dish_dash/data/api/api_service.dart';
 import 'package:dish_dash/data/model/restaurant_list_result.dart';
-import 'package:dish_dash/provider/result_state.dart';
+import 'package:dish_dash/utils/result_state.dart';
 import 'package:flutter/cupertino.dart';
 
 class RestaurantListProvider extends ChangeNotifier {

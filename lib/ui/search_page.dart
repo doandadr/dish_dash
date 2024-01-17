@@ -1,7 +1,6 @@
 import 'package:dish_dash/common/style.dart';
-import 'package:dish_dash/data/api/api_service.dart';
 import 'package:dish_dash/provider/restaurant_search_provider.dart';
-import 'package:dish_dash/provider/result_state.dart';
+import 'package:dish_dash/utils/result_state.dart';
 import 'package:dish_dash/widget/card_restaurant.dart';
 import 'package:dish_dash/widget/platform_widget.dart';
 import 'package:flutter/material.dart';

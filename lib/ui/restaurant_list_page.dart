@@ -6,7 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../provider/result_state.dart';
+import '../utils/result_state.dart';
 
 class RestaurantListPage extends StatelessWidget {
   static const String restaurantListTitle = 'Restaurants';
