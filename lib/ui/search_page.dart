@@ -127,11 +127,12 @@ class _SearchWidgetState extends State<SearchWidget> {
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       child: SearchAnchor(
         viewBackgroundColor: Colors.white,
-        viewElevation: 0,
-        viewHintText: 'Find restaurants',
+        viewSurfaceTintColor: Colors.white,
+        viewElevation: 16,
         isFullScreen: false,
         builder: (BuildContext context, SearchController controller) {
           return SearchBar(
+            hintText: "Find by name or menus",
             elevation: const MaterialStatePropertyAll(6),
             surfaceTintColor: const MaterialStatePropertyAll(Colors.transparent),
             backgroundColor: MaterialStateProperty.all(Colors.white),
@@ -139,16 +140,21 @@ class _SearchWidgetState extends State<SearchWidget> {
             padding: const MaterialStatePropertyAll<EdgeInsets>(
                 EdgeInsets.symmetric(horizontal: 16)),
             onTap: () {
-              controller.openView();
+              if (searchHistory.isNotEmpty) controller.openView();
             },
             onChanged: (_) {
-              controller.openView();
+              if (searchHistory.isNotEmpty) controller.openView();
             },
             trailing: <Widget>[
               Tooltip(
                 message: 'Search for restaurants',
                 child: IconButton(
+                  style: const ButtonStyle(
+                    backgroundColor: MaterialStatePropertyAll(primaryColor),
+                    foregroundColor: MaterialStatePropertyAll(Colors.white),
+                  ),
                   onPressed: () {
+                    if (controller.text.isEmpty) return;
                     setState(() {
                       searchHistory.remove(controller.text);
                       searchHistory.insert(0, controller.text);
@@ -171,10 +177,9 @@ class _SearchWidgetState extends State<SearchWidget> {
             return ListTile(
               title: Text(item),
               onTap: () {
+                if (controller.text.isEmpty) return;
                 setState(() {
-
                   controller.closeView(item);
-
                 });
                 Provider.of<RestaurantSearchProvider>(
                   context,
