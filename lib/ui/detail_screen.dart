@@ -18,12 +18,7 @@ class DetailScreen extends StatelessWidget {
       context,
       listen: false,
     ).fetchDetailRestaurant(restaurant.id);
-    return ChangeNotifierProvider(
-        create: (_) {
-          return RestaurantDetailsProvider(
-              apiService: ApiService());
-        },
-        child: _buildRestaurantDetails(context));
+    return _buildRestaurantDetails(context);
   }
 
   Widget _buildRestaurantDetails(BuildContext context) {
