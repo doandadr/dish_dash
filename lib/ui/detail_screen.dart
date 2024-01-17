@@ -14,10 +14,14 @@ class DetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Provider.of<RestaurantDetailsProvider>(
+      context,
+      listen: false,
+    ).fetchDetailRestaurant(restaurant.id);
     return ChangeNotifierProvider(
         create: (_) {
           return RestaurantDetailsProvider(
-              apiService: ApiService(), restaurantId: restaurant.id);
+              apiService: ApiService());
         },
         child: _buildRestaurantDetails(context));
   }
@@ -213,8 +217,9 @@ class DetailScreen extends StatelessWidget {
                       ),
                     );
                   case ResultState.error:
-                    return const Center(
-                      child: Material(
+                    return  Container(
+                      margin: const EdgeInsets.symmetric(vertical: 16),
+                      child: const Material(
                         child: Text("Error: Could not receive data from network"),
                       ),
                     );

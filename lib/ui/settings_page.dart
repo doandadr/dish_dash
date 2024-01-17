@@ -1,8 +1,10 @@
 import 'package:dish_dash/common/style.dart';
+import 'package:dish_dash/provider/preferences_provider.dart';
 import 'package:dish_dash/widget/platform_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SettingsPage extends StatelessWidget {
   static const String settingsTitle = 'Settings';
@@ -16,10 +18,6 @@ class SettingsPage extends StatelessWidget {
           'Settings',
           style: TextStyle(color: primaryColor, fontFamily: 'Hero'),
         ),
-        elevation: 6,
-        shadowColor: Colors.black,
-        centerTitle: false,
-        surfaceTintColor: Colors.transparent,
         leading: const Icon(
           Icons.settings,
           color: primaryColor,
@@ -40,57 +38,27 @@ class SettingsPage extends StatelessWidget {
   }
 
   Widget _buildList(BuildContext context) {
-    return ListView(
-      children: [
-        Material(
-          child: ListTile(
-            title: const Text('Dark Theme'),
-            trailing: Switch.adaptive(
-              value: false,
-              onChanged: (value) {
-                defaultTargetPlatform == TargetPlatform.iOS
-                    ? showCupertinoDialog(
-                        context: context,
-                        barrierDismissible: true,
-                        builder: (context) {
-                          return CupertinoAlertDialog(
-                            title: const Text('Coming Soon!'),
-                            content:
-                                const Text('This feature will be coming soon!'),
-                            actions: [
-                              CupertinoDialogAction(
-                                child: const Text('Ok'),
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                              ),
-                            ],
-                          );
-                        },
-                      )
-                    : showDialog(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            title: const Text('Coming Soon!'),
-                            content:
-                                const Text('This feature will be coming soon!'),
-                            actions: [
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                child: const Text('Ok'),
-                              ),
-                            ],
-                          );
-                        },
-                      );
-              },
-            ),
+    return Consumer<PreferencesProvider>(
+      builder: (BuildContext context, PreferencesProvider provider, Widget? child) {
+        return Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: ListView(
+            children: [
+              Material(
+                child: ListTile(
+                  title: const Text('Dark Theme'),
+                  trailing: Switch.adaptive(
+                    value: provider.isDarkTheme,
+                    onChanged: (value) {
+                      provider.enableDarkTheme(value);
+                    },
+                  ),
+                ),
+              ),
+            ],
           ),
-        ),
-      ],
+        );
+      },
     );
   }
 

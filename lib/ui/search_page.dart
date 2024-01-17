@@ -20,10 +20,6 @@ class SearchPage extends StatelessWidget {
           'Search Restaurants',
           style: TextStyle(color: primaryColor, fontFamily: 'Hero'),
         ),
-        elevation: 6,
-        shadowColor: Colors.black,
-        centerTitle: false,
-        surfaceTintColor: Colors.transparent,
         leading: const Icon(
           Icons.manage_search_rounded,
           color: primaryColor,
@@ -97,14 +93,9 @@ class SearchPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (BuildContext context) {
-        return RestaurantSearchProvider(apiService: ApiService());
-      },
-      child: PlatformWidget(
-        androidBuilder: _buildAndroid,
-        iosBuilder: _buildIos,
-      ),
+    return PlatformWidget(
+      androidBuilder: _buildAndroid,
+      iosBuilder: _buildIos,
     );
   }
 }

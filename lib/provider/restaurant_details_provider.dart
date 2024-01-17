@@ -5,12 +5,8 @@ import 'package:flutter/cupertino.dart';
 
 class RestaurantDetailsProvider extends ChangeNotifier {
   final ApiService apiService;
-  final String restaurantId;
 
-  RestaurantDetailsProvider(
-      {required this.apiService, required this.restaurantId}) {
-    _fetchDetailRestaurant(restaurantId);
-  }
+  RestaurantDetailsProvider({required this.apiService});
 
   late RestaurantDetailResult _detailsResult;
   late ResultState _state;
@@ -22,7 +18,7 @@ class RestaurantDetailsProvider extends ChangeNotifier {
 
   ResultState get state => _state;
 
-  Future<dynamic> _fetchDetailRestaurant(String restaurantId) async {
+  Future<dynamic> fetchDetailRestaurant(String restaurantId) async {
     try {
       _state = ResultState.loading;
       notifyListeners();

@@ -1,5 +1,4 @@
 import 'package:dish_dash/common/style.dart';
-import 'package:dish_dash/data/api/api_service.dart';
 import 'package:dish_dash/provider/restaurant_list_provider.dart';
 import 'package:dish_dash/widget/card_restaurant.dart';
 import 'package:dish_dash/widget/platform_widget.dart';
@@ -64,10 +63,6 @@ class RestaurantListPage extends StatelessWidget {
           'Browse Restaurants',
           style: TextStyle(color: primaryColor, fontFamily: 'Hero'),
         ),
-        elevation: 6,
-        shadowColor: Colors.black,
-        centerTitle: false,
-        surfaceTintColor: Colors.transparent,
         leading: const Icon(
           Icons.fastfood,
           color: primaryColor,
@@ -97,12 +92,6 @@ class RestaurantListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<RestaurantListProvider>(
-      create: (_) {
-        return RestaurantListProvider(apiService: ApiService());
-      },
-      child:
-          PlatformWidget(androidBuilder: _buildAndroid, iosBuilder: _buildIos),
-    );
+    return PlatformWidget(androidBuilder: _buildAndroid, iosBuilder: _buildIos);
   }
 }
