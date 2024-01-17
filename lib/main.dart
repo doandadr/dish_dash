@@ -1,5 +1,7 @@
 import 'package:dish_dash/data/api/api_service.dart';
+import 'package:dish_dash/data/db/database_helper.dart';
 import 'package:dish_dash/data/preferences/preferences_helper.dart';
+import 'package:dish_dash/provider/database_provider.dart';
 import 'package:dish_dash/provider/preferences_provider.dart';
 import 'package:dish_dash/provider/restaurant_details_provider.dart';
 import 'package:dish_dash/provider/restaurant_list_provider.dart';
@@ -37,6 +39,9 @@ class MyApp extends StatelessWidget {
           create: (_) => PreferencesProvider(
               preferencesHelper: PreferencesHelper(
                   sharedPreferences: SharedPreferences.getInstance())),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => DatabaseProvider(databaseHelper: DatabaseHelper()),
         )
       ],
       child: Consumer<PreferencesProvider>(
