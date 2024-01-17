@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dish_dash/common/style.dart';
+import 'package:dish_dash/ui/favorite_page.dart';
 import 'package:dish_dash/ui/restaurant_list_page.dart';
 import 'package:dish_dash/ui/search_page.dart';
 import 'package:dish_dash/ui/settings_page.dart';
@@ -23,23 +24,27 @@ class _HomeScreenState extends State<HomeScreen> {
   final List<Widget> _listWidget = [
     const RestaurantListPage(),
     const SearchPage(),
-    const SettingsPage()
+    const SettingsPage(),
+    const FavoritePage(),
   ];
 
   final List<BottomNavigationBarItem> _bottomNavBarItems = [
     BottomNavigationBarItem(
-        icon: Icon(
-          Platform.isIOS ? CupertinoIcons.house : Icons.food_bank_outlined,
-        ),
-        label: RestaurantListPage.restaurantListTitle),
+      icon: Icon(
+          Platform.isIOS ? CupertinoIcons.house : Icons.food_bank_outlined),
+      label: RestaurantListPage.restaurantListTitle,
+    ),
     BottomNavigationBarItem(
-        icon: Icon(
-          Platform.isIOS ? CupertinoIcons.search : Icons.search,
-        ),
-        label: SearchPage.searchTitle),
+      icon: Icon(Platform.isIOS ? CupertinoIcons.search : Icons.search),
+      label: SearchPage.searchTitle,
+    ),
     BottomNavigationBarItem(
       icon: Icon(Platform.isIOS ? CupertinoIcons.settings : Icons.settings),
       label: SettingsPage.settingsTitle,
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Platform.isIOS ? CupertinoIcons.heart : Icons.favorite_border),
+      label: FavoritePage.favoriteTitle,
     ),
   ];
 
