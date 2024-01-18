@@ -69,7 +69,7 @@ class DetailScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         CircleAvatar(
-                          backgroundColor: Colors.white,
+                          backgroundColor: Theme.of(context).colorScheme.background,
                           child: IconButton(
                             icon: const Icon(
                               Icons.arrow_back_ios_new,
@@ -93,7 +93,7 @@ class DetailScreen extends StatelessWidget {
                     padding:
                         const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: Theme.of(context).colorScheme.background,
                       borderRadius: BorderRadius.circular(30),
                       boxShadow: const [
                         BoxShadow(

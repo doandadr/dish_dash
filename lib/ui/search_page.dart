@@ -118,7 +118,7 @@ class _SearchWidgetState extends State<SearchWidget> {
         hintText: "Find by name or menus",
         elevation: const MaterialStatePropertyAll(6),
         surfaceTintColor: const MaterialStatePropertyAll(Colors.transparent),
-        backgroundColor: MaterialStateProperty.all(Colors.white),
+        backgroundColor: MaterialStateProperty.all(Theme.of(context).colorScheme.background),
         controller: _searchController,
         padding: const MaterialStatePropertyAll<EdgeInsets>(
             EdgeInsets.symmetric(horizontal: 16)),
@@ -133,9 +133,9 @@ class _SearchWidgetState extends State<SearchWidget> {
           Tooltip(
             message: 'Search for restaurants',
             child: IconButton(
-              style: const ButtonStyle(
-                backgroundColor: MaterialStatePropertyAll(primaryColor),
-                foregroundColor: MaterialStatePropertyAll(Colors.white),
+              style: ButtonStyle(
+                backgroundColor: const MaterialStatePropertyAll(primaryColor),
+                foregroundColor: MaterialStatePropertyAll(Theme.of(context).colorScheme.background),
               ),
               onPressed: () {
                 if (_searchController.text.isEmpty) return;

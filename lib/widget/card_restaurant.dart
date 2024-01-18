@@ -55,7 +55,7 @@ class CardRestaurant extends StatelessWidget {
                     padding:
                     const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
                     decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: Theme.of(context).colorScheme.background,
                         borderRadius: BorderRadius.circular(15)),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,

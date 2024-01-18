@@ -19,7 +19,7 @@ class FavoriteButton extends StatelessWidget {
           builder: (context, snapshot) {
             var isFavorite = snapshot.data ?? false;
             return CircleAvatar(
-                backgroundColor: Colors.white,
+                backgroundColor: Theme.of(context).colorScheme.background,
                 child: isFavorite
                     ? IconButton(
                   icon: const Icon(Icons.favorite),
