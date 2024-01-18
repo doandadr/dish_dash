@@ -74,24 +74,7 @@ class MyApp extends StatelessWidget {
             (BuildContext context, PreferencesProvider value, Widget? child) {
           return MaterialApp(
             title: 'Dish Dash',
-            theme: ThemeData(
-              fontFamily: 'DMSans',
-              colorScheme: Theme.of(context).colorScheme.copyWith(
-                    primary: primaryColor,
-                    secondary: secondaryColor,
-                    onPrimary: onPrimaryColor,
-                    onSecondary: onSecondaryColor,
-                  ),
-              scaffoldBackgroundColor: Colors.white,
-              visualDensity: VisualDensity.adaptivePlatformDensity,
-              useMaterial3: true,
-              appBarTheme: const AppBarTheme(
-                elevation: 6,
-                shadowColor: Colors.black,
-                surfaceTintColor: Colors.transparent,
-              ),
-
-            ),
+            theme: value.themeData,
             navigatorKey: navigatorKey,
             initialRoute: SplashScreen.routeName,
             routes: {

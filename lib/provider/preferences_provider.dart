@@ -11,8 +11,10 @@ class PreferencesProvider extends ChangeNotifier {
   }
 
   bool _isDarkTheme = false;
-
   bool get isDarkTheme => _isDarkTheme;
+
+  bool _isDailyReminderOn = false;
+  bool get isDailyReminderOn => _isDailyReminderOn;
 
   void _getTheme() async {
     _isDarkTheme = await preferencesHelper.isDarkTheme;
@@ -22,6 +24,16 @@ class PreferencesProvider extends ChangeNotifier {
   void enableDarkTheme(bool value) {
     preferencesHelper.setDarkTheme(value);
     _getTheme();
+  }
+
+  void _getDailyReminderPreferences() async {
+    _isDailyReminderOn = await preferencesHelper.isDailyReminderOn;
+    notifyListeners();
+  }
+
+  void enableDailyReminder(bool value) {
+    preferencesHelper.setDailyReminder(value);
+    _getDailyReminderPreferences();
   }
 
   ThemeData get themeData => _isDarkTheme ? darkTheme : lightTheme;

@@ -17,6 +17,7 @@ ThemeData lightTheme = ThemeData(
     secondary: secondaryColor,
     onPrimary: onPrimaryColor,
     onSecondary: onSecondaryColor,
+    brightness: Brightness.light
   ),
   visualDensity: VisualDensity.adaptivePlatformDensity,
   useMaterial3: true,
@@ -29,6 +30,7 @@ ThemeData darkTheme = ThemeData(
     secondary: secondaryColor,
     onPrimary: onPrimaryColor,
     onSecondary: onSecondaryColor,
+    brightness: Brightness.dark,
   ),
   visualDensity: VisualDensity.adaptivePlatformDensity,
   useMaterial3: true,
