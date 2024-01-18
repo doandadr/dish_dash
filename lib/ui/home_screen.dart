@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:dish_dash/common/style.dart';
 import 'package:dish_dash/data/notification/notification_helper.dart';
+import 'package:dish_dash/ui/detail_screen.dart';
 import 'package:dish_dash/ui/favorite_page.dart';
 import 'package:dish_dash/ui/restaurant_list_page.dart';
 import 'package:dish_dash/ui/search_page.dart';
@@ -28,6 +29,8 @@ class _HomeScreenState extends State<HomeScreen> {
     const SettingsPage(),
     const FavoritePage(),
   ];
+
+  final NotificationHelper _notificationHelper = NotificationHelper();
 
   final List<BottomNavigationBarItem> _bottomNavBarItems = [
     BottomNavigationBarItem(
@@ -80,6 +83,19 @@ class _HomeScreenState extends State<HomeScreen> {
         return _listWidget[index];
       },
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _notificationHelper
+        .configureSelectNotificationSubject(DetailScreen.routeName);
+  }
+
+  @override
+  void dispose() {
+    selectNotificationSubject.close();
+    super.dispose();
   }
 
   @override

@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:dish_dash/common/navigation.dart';
+import 'package:dish_dash/data/model/restaurant.dart';
 import 'package:dish_dash/data/model/restaurant_list_result.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:rxdart/rxdart.dart';
@@ -38,7 +39,7 @@ class NotificationHelper {
             (NotificationResponse details) async {
       final payload = details.payload;
       if (payload != null) {
-        print('notification payload: ' + payload);
+        print('notification payload: $payload');
       }
       selectNotificationSubject.add(payload ?? 'empty payload');
     });
@@ -83,13 +84,12 @@ class NotificationHelper {
       platformChannelSpecifics,
       payload: json.encode(randomRestaurant.toJson()),
     );
+  }
 
-    void configureSelectNotificationSubject(String route) {
-      selectNotificationSubject.stream.listen((String payload) async {
-        var data = RestaurantListResult.fromJson(json.decode(payload));
-        var restaurant = data.restaurants[randomIndex];
-        Navigation.intentWithData(route, restaurant);
-      });
-    }
+  void configureSelectNotificationSubject(String route) {
+    selectNotificationSubject.stream.listen((String payload) async {
+      var data = Restaurant.fromJson(json.decode(payload));
+      Navigation.intentWithData(route, data);
+    });
   }
 }
