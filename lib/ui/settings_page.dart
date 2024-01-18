@@ -72,6 +72,7 @@ class SettingsPage extends StatelessWidget {
                             customDialog(context);
                           } else {
                             scheduled.scheduledRestaurantNotification(value);
+                            provider.enableDailyReminder(value);
                           }
                         },
                       );
