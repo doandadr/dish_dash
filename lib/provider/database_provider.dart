@@ -24,6 +24,7 @@ class DatabaseProvider extends ChangeNotifier {
   List<Restaurant> get favorites => _favorites;
 
   void _getFavorites() async {
+    _state = ResultState.loading;
     _favorites = await databaseHelper.getFavorites();
 
     if (favorites.isNotEmpty) {
@@ -57,7 +58,7 @@ class DatabaseProvider extends ChangeNotifier {
     }
   }
 
-  Future<bool> isFavorited(String id) async {
+  Future<bool> isFavorite(String id) async {
     final favorite = await databaseHelper.getFavoriteById(id);
     return favorite.isNotEmpty;
   }
