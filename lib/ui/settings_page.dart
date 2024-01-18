@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:dish_dash/common/style.dart';
 import 'package:dish_dash/provider/preferences_provider.dart';
+import 'package:dish_dash/provider/scheduling_provider.dart';
+import 'package:dish_dash/widget/custom_dialog.dart';
 import 'package:dish_dash/widget/platform_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -39,7 +43,8 @@ class SettingsPage extends StatelessWidget {
 
   Widget _buildList(BuildContext context) {
     return Consumer<PreferencesProvider>(
-      builder: (BuildContext context, PreferencesProvider provider, Widget? child) {
+      builder:
+          (BuildContext context, PreferencesProvider provider, Widget? child) {
         return Padding(
           padding: const EdgeInsets.all(16.0),
           child: ListView(
@@ -55,6 +60,25 @@ class SettingsPage extends StatelessWidget {
                   ),
                 ),
               ),
+              Material(
+                child: ListTile(
+                  title: const Text('Schedule Restaurant Notification'),
+                  trailing: Consumer<SchedulingProvider>(
+                    builder: (context, scheduled, _) {
+                      return Switch.adaptive(
+                        value: scheduled.isScheduled,
+                        onChanged: (value) async {
+                          if (Platform.isIOS) {
+                            customDialog(context);
+                          } else {
+                            scheduled.scheduledRestaurantNotification(value);
+                          }
+                        },
+                      );
+                    },
+                  ),
+                ),
+              )
             ],
           ),
         );
