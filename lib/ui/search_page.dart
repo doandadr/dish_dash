@@ -57,19 +57,17 @@ class SearchPage extends StatelessWidget {
               );
             } else {
               if (provider.state == ResultState.hasData) {
-                return Expanded(
-                  child: ListView.separated(
-                    itemCount: provider.result.restaurants.length,
-                    itemBuilder: (context, index) {
-                      var restaurant = provider.result.restaurants[index];
-                      return CardRestaurant(restaurant: restaurant);
-                    },
-                    separatorBuilder: (BuildContext context, int index) {
-                      return const Divider(
-                        height: 1,
-                      );
-                    },
-                  ),
+                return ListView.separated(
+                  itemCount: provider.result.restaurants.length,
+                  itemBuilder: (context, index) {
+                    var restaurant = provider.result.restaurants[index];
+                    return CardRestaurant(restaurant: restaurant);
+                  },
+                  separatorBuilder: (BuildContext context, int index) {
+                    return const Divider(
+                      height: 1,
+                    );
+                  },
                 );
               } else if (provider.state == ResultState.noData) {
                 return const Center(
