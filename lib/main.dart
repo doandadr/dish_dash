@@ -14,7 +14,6 @@ import 'package:dish_dash/provider/restaurant_search_provider.dart';
 import 'package:dish_dash/provider/scheduling_provider.dart';
 import 'package:dish_dash/ui/detail_screen.dart';
 import 'package:dish_dash/ui/home_screen.dart';
-import 'package:dish_dash/common/style.dart';
 import 'package:dish_dash/ui/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';

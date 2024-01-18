@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:dish_dash/data/api/api_service.dart';
 import 'package:dish_dash/data/notification/notification_helper.dart';
 import 'package:dish_dash/main.dart';
+import 'package:flutter/foundation.dart';
 
 final ReceivePort port = ReceivePort();
 
@@ -16,7 +17,7 @@ class BackgroundService {
     _instance = this;
   }
 
-  factory BackgroundService() => _instance ??= BackgroundService._internal();
+  factory BackgroundService() => _instance ?? BackgroundService._internal();
 
   void initializeIsolate() {
     IsolateNameServer.registerPortWithName(
@@ -26,7 +27,7 @@ class BackgroundService {
   }
 
   static Future<void> callback() async {
-    print("Alarm fired!");
+    debugPrint("Alarm fired!");
     final NotificationHelper notificationHelper = NotificationHelper();
     var result = await ApiService().getRestaurantList();
     await notificationHelper.showNotification(

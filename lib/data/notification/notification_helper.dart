@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:dish_dash/common/navigation.dart';
 import 'package:dish_dash/data/model/restaurant.dart';
 import 'package:dish_dash/data/model/restaurant_list_result.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -16,30 +17,31 @@ class NotificationHelper {
     _instance = this;
   }
 
-  factory NotificationHelper() => _instance ??= NotificationHelper._internal();
+  factory NotificationHelper() => _instance ?? NotificationHelper._internal();
 
   Future<void> initNotifications(
       FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin) async {
-    var initializationSettingsAndroid =
-        const AndroidInitializationSettings('app_icon');
+    const initializationSettingsAndroid =
+         AndroidInitializationSettings('app_icon');
 
-    var initializationSettingsIOS = const DarwinInitializationSettings(
+    const initializationSettingsIOS = DarwinInitializationSettings(
       requestAlertPermission: false,
       requestBadgePermission: false,
       requestSoundPermission: false,
     );
 
-    var initializationSettings = InitializationSettings(
+    const initializationSettings = InitializationSettings(
       android: initializationSettingsAndroid,
       iOS: initializationSettingsIOS,
     );
 
-    await flutterLocalNotificationsPlugin.initialize(initializationSettings,
-        onDidReceiveBackgroundNotificationResponse:
+    await flutterLocalNotificationsPlugin.initialize(
+        initializationSettings,
+        onDidReceiveNotificationResponse:
             (NotificationResponse details) async {
       final payload = details.payload;
       if (payload != null) {
-        print('notification payload: $payload');
+        debugPrint('notification payload: $payload');
       }
       selectNotificationSubject.add(payload ?? 'empty payload');
     });
