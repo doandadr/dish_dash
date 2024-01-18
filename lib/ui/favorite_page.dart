@@ -34,9 +34,12 @@ class FavoritePage extends StatelessWidget {
             },
           );
         case ResultState.noData:
-          return const Center(
-            child: Material(
-              child: Text("Your favorite restaurants will be shown here"),
+          return const Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Center(
+              child: Material(
+                child: Text("Your favorite restaurants will be shown here", textAlign: TextAlign.center,),
+              ),
             ),
           );
         case ResultState.error:
