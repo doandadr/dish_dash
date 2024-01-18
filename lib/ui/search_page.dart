@@ -47,7 +47,7 @@ class SearchPage extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        const SearchWidget(),
+        SearchWidget(),
         Expanded(
           child: Consumer<RestaurantSearchProvider>(
               builder: (context, provider, _) {
@@ -107,16 +107,11 @@ class SearchPage extends StatelessWidget {
   }
 }
 
-class SearchWidget extends StatefulWidget {
-  const SearchWidget({
+class SearchWidget extends StatelessWidget {
+  SearchWidget({
     super.key,
   });
 
-  @override
-  State<SearchWidget> createState() => _SearchWidgetState();
-}
-
-class _SearchWidgetState extends State<SearchWidget> {
   final SearchController _searchController = SearchController();
 
   @override
