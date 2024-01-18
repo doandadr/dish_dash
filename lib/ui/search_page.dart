@@ -109,76 +109,45 @@ class SearchWidget extends StatefulWidget {
 }
 
 class _SearchWidgetState extends State<SearchWidget> {
-  List<String> searchHistory = [];
-
+  final SearchController _searchController = SearchController();
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-      child: SearchAnchor(
-        viewBackgroundColor: Colors.white,
-        viewSurfaceTintColor: Colors.white,
-        viewElevation: 16,
-        isFullScreen: false,
-        builder: (BuildContext context, SearchController controller) {
-          return SearchBar(
-            hintText: "Find by name or menus",
-            elevation: const MaterialStatePropertyAll(6),
-            surfaceTintColor: const MaterialStatePropertyAll(Colors.transparent),
-            backgroundColor: MaterialStateProperty.all(Colors.white),
-            controller: controller,
-            padding: const MaterialStatePropertyAll<EdgeInsets>(
-                EdgeInsets.symmetric(horizontal: 16)),
-            onTap: () {
-              if (searchHistory.isNotEmpty) controller.openView();
-            },
-            onChanged: (_) {
-              if (searchHistory.isNotEmpty) controller.openView();
-            },
-            trailing: <Widget>[
-              Tooltip(
-                message: 'Search for restaurants',
-                child: IconButton(
-                  style: const ButtonStyle(
-                    backgroundColor: MaterialStatePropertyAll(primaryColor),
-                    foregroundColor: MaterialStatePropertyAll(Colors.white),
-                  ),
-                  onPressed: () {
-                    if (controller.text.isEmpty) return;
-                    setState(() {
-                      searchHistory.remove(controller.text);
-                      searchHistory.insert(0, controller.text);
-                    });
-                    Provider.of<RestaurantSearchProvider>(
-                      context,
-                      listen: false,
-                    ).searchRestaurants(controller.text);
-                  },
-                  icon: const Icon(Icons.search),
-                ),
-              )
-            ],
-          );
+      child: SearchBar(
+        hintText: "Find by name or menus",
+        elevation: const MaterialStatePropertyAll(6),
+        surfaceTintColor: const MaterialStatePropertyAll(Colors.transparent),
+        backgroundColor: MaterialStateProperty.all(Colors.white),
+        controller: _searchController,
+        padding: const MaterialStatePropertyAll<EdgeInsets>(
+            EdgeInsets.symmetric(horizontal: 16)),
+        onChanged: (_) {
+          if (_searchController.text.isEmpty) return;
+          Provider.of<RestaurantSearchProvider>(
+            context,
+            listen: false,
+          ).searchRestaurants(_searchController.text);
         },
-        suggestionsBuilder:
-            (BuildContext context, SearchController controller) {
-          return List<ListTile>.generate(searchHistory.length, (int index) {
-            final String item = searchHistory[index];
-            return ListTile(
-              title: Text(item),
-              onTap: () {
-                if (controller.text.isEmpty) return;
-                setState(() {
-                  controller.closeView(item);
-                });
+        trailing: <Widget>[
+          Tooltip(
+            message: 'Search for restaurants',
+            child: IconButton(
+              style: const ButtonStyle(
+                backgroundColor: MaterialStatePropertyAll(primaryColor),
+                foregroundColor: MaterialStatePropertyAll(Colors.white),
+              ),
+              onPressed: () {
+                if (_searchController.text.isEmpty) return;
                 Provider.of<RestaurantSearchProvider>(
                   context,
                   listen: false,
-                ).searchRestaurants(item);
+                ).searchRestaurants(_searchController.text);
               },
-            );
-          });
-        },
+              icon: const Icon(Icons.search),
+            ),
+          )
+        ],
       ),
     );
   }

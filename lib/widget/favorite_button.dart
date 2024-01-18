@@ -13,9 +13,9 @@ class FavoriteButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<DatabaseProvider>(
-      builder: (context, provider, child) {
+      builder: (context, provider, _) {
         return FutureBuilder(
-          future: provider.isFavorited(restaurant.id),
+          future: provider.isFavorite(restaurant.id),
           builder: (context, snapshot) {
             var isFavorite = snapshot.data ?? false;
             return CircleAvatar(

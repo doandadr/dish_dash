@@ -1,3 +1,4 @@
+import 'package:dish_dash/common/navigation.dart';
 import 'package:dish_dash/common/style.dart';
 import 'package:dish_dash/data/model/restaurant.dart';
 import 'package:dish_dash/ui/detail_screen.dart';
@@ -16,8 +17,9 @@ class CardRestaurant extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, DetailScreen.routeName,
-            arguments: restaurant);
+        // Navigator.pushNamed(context, DetailScreen.routeName,
+        //     arguments: restaurant); TODO remove comments
+        Navigation.intentWithData(DetailScreen.routeName, restaurant);
       },
       child: Padding(
         padding: const EdgeInsets.all(8.0),

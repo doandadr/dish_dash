@@ -1,10 +1,9 @@
 import 'package:dish_dash/common/style.dart';
-import 'package:dish_dash/data/api/api_service.dart';
-import 'package:dish_dash/provider/database_provider.dart';
 import 'package:dish_dash/provider/restaurant_details_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:readmore/readmore.dart';
+import '../common/navigation.dart';
 import '../data/model/restaurant.dart';
 import '../utils/result_state.dart';
 import '../widget/favorite_button.dart';
@@ -77,7 +76,8 @@ class DetailScreen extends StatelessWidget {
                               color: secondaryColor,
                             ),
                             onPressed: () {
-                              Navigator.pop(context);
+                              // Navigator.pop(context); TODO remove comments
+                              Navigation.back();
                             },
                           ),
                         ),
