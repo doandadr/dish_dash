@@ -125,8 +125,7 @@ class DetailScreen extends StatelessWidget {
               builder: (_, provider, __) {
                 switch (provider.state) {
                   case ResultState.loading:
-                    return const Expanded(
-                        child: Center(child: CircularProgressIndicator()));
+                    return const Center(child: CircularProgressIndicator());
 
                   case ResultState.hasData:
                     return Padding(
