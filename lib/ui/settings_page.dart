@@ -66,7 +66,7 @@ class SettingsPage extends StatelessWidget {
                   trailing: Consumer<SchedulingProvider>(
                     builder: (context, scheduled, _) {
                       return Switch.adaptive(
-                        value: scheduled.isScheduled,
+                        value: provider.isDailyReminderOn,
                         onChanged: (value) async {
                           if (Platform.isIOS) {
                             customDialog(context);
