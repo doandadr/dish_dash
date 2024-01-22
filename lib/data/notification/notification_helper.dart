@@ -76,7 +76,7 @@ class NotificationHelper {
     var randomIndex = Random().nextInt(restaurantList.length);
     var randomRestaurant = restaurantList[randomIndex];
 
-    var titleNotification = "<b>Food Order Made Easy</b>";
+    var titleNotification = "<b>Hungry? Checkout This Restaurant</b>";
     var bodyNotification = randomRestaurant.name;
 
     await flutterLocalNotificationsPlugin.show(
@@ -90,8 +90,10 @@ class NotificationHelper {
 
   void configureSelectNotificationSubject(String route) {
     selectNotificationSubject.stream.listen((String payload) async {
+      debugPrint("Payload listened");
       var data = Restaurant.fromJson(json.decode(payload));
       Navigation.intentWithData(route, data);
+      debugPrint("Navigate to $route with data: ${data.name}");
     });
   }
 }
