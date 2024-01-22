@@ -19,10 +19,6 @@ class CardRestaurant extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Provider.of<RestaurantDetailsProvider>(
-          context,
-          listen: false,
-        ).fetchDetailRestaurant(restaurant.id);
         Navigation.intentWithData(DetailScreen.routeName, restaurant);
 
       },

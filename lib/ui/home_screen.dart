@@ -94,7 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void dispose() {
-    selectNotificationSubject.close();
+    // selectNotificationSubject.close();
     super.dispose();
   }
 

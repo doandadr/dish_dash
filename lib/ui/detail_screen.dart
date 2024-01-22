@@ -8,22 +8,33 @@ import '../data/model/restaurant.dart';
 import '../utils/result_state.dart';
 import '../widget/favorite_button.dart';
 
-class DetailScreen extends StatelessWidget {
+class DetailScreen extends StatefulWidget {
   static const routeName = '/detail_screen';
   final Restaurant restaurant;
 
   const DetailScreen({super.key, required this.restaurant});
 
   @override
-  Widget build(BuildContext context) {
-    return _buildRestaurantDetails(context);
+  State<DetailScreen> createState() => _DetailScreenState();
+}
+
+class _DetailScreenState extends State<DetailScreen> {
+  late RestaurantDetailsProvider _provider;
+
+  @override
+  void initState() {
+    super.initState();
+    _provider = Provider.of<RestaurantDetailsProvider>(context, listen: false);
+    _provider.fetchDetailRestaurant(widget.restaurant.id);
   }
 
-  Widget _buildRestaurantDetails(BuildContext context) {
+  @override
+  Widget build(BuildContext context) {
+    debugPrint("Building ${widget.restaurant.name} details");
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          restaurant.name,
+          widget.restaurant.name,
           style: const TextStyle(color: primaryColor, fontFamily: 'Hero'),
         ),
         elevation: 6,
@@ -35,211 +46,218 @@ class DetailScreen extends StatelessWidget {
           color: primaryColor,
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Stack(
-              alignment: Alignment.bottomCenter,
-              clipBehavior: Clip.none,
-              children: [
-                Hero(
-                  tag: restaurant.id,
-                  child: Image.network(
-                    'https://restaurant-api.dicoding.dev/images/medium/${restaurant.pictureId}',
-                    height: 200,
-                    width: double.maxFinite,
-                    fit: BoxFit.cover,
-                    errorBuilder: (ctx, error, _) => const SizedBox(
-                        height: 200,
-                        child: Center(
-                            child: Icon(
-                          Icons.error,
-                          color: Colors.red,
-                        ))),
-                  ),
-                ),
-                SafeArea(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        CircleAvatar(
-                          backgroundColor: Theme.of(context).colorScheme.background,
-                          child: IconButton(
-                            icon: const Icon(
-                              Icons.arrow_back_ios_new,
-                              color: secondaryColor,
-                            ),
-                            onPressed: () {
-                              // Navigator.pop(context); TODO remove comments
-                              Navigation.back();
-                            },
-                          ),
-                        ),
-                        FavoriteButton(restaurant: restaurant),
-                      ],
-                    ),
-                  ),
-                ),
-                Positioned(
-                  bottom: -20,
-                  child: Container(
-                    alignment: AlignmentDirectional.bottomCenter,
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.background,
-                      borderRadius: BorderRadius.circular(30),
-                      boxShadow: const [
-                        BoxShadow(
-                            blurRadius: 5,
-                            offset: Offset(3, 3),
-                            color: Colors.black26)
-                      ],
-                    ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const Icon(
-                          Icons.star,
-                          color: secondaryColor,
-                          size: 30,
-                        ),
-                        Text(
-                          restaurant.rating.toStringAsPrecision(2),
-                          style: const TextStyle(fontSize: 24),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Consumer<RestaurantDetailsProvider>(
-              builder: (_, provider, __) {
-                switch (provider.state) {
-                  case ResultState.loading:
-                    return const Center(child: CircularProgressIndicator());
+      body: _buildRestaurantDetails(context),
+    );
+  }
 
-                  case ResultState.hasData:
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const SizedBox(
-                            height: 24,
+  Widget _buildRestaurantDetails(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Stack(
+            alignment: Alignment.bottomCenter,
+            clipBehavior: Clip.none,
+            children: [
+              Hero(
+                tag: widget.restaurant.id,
+                child: Image.network(
+                  'https://restaurant-api.dicoding.dev/images/medium/${widget.restaurant.pictureId}',
+                  height: 200,
+                  width: double.maxFinite,
+                  fit: BoxFit.cover,
+                  errorBuilder: (ctx, error, _) => const SizedBox(
+                      height: 200,
+                      child: Center(
+                          child: Icon(
+                            Icons.error,
+                            color: Colors.red,
+                          ))),
+                ),
+              ),
+              SafeArea(
+                child: Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      CircleAvatar(
+                        backgroundColor: Theme.of(context).colorScheme.background,
+                        child: IconButton(
+                          icon: const Icon(
+                            Icons.arrow_back_ios_new,
+                            color: secondaryColor,
                           ),
-                          Row(
-                            children: [
-                              const Icon(
-                                Icons.room_service,
-                                color: primaryColor,
-                              ),
-                              const SizedBox(
-                                width: 8,
-                              ),
-                              Text(
+                          onPressed: () {
+                            Navigation.back();
+                          },
+                        ),
+                      ),
+                      FavoriteButton(restaurant: widget.restaurant),
+                    ],
+                  ),
+                ),
+              ),
+              Positioned(
+                bottom: -20,
+                child: Container(
+                  alignment: AlignmentDirectional.bottomCenter,
+                  padding:
+                  const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.background,
+                    borderRadius: BorderRadius.circular(30),
+                    boxShadow: const [
+                      BoxShadow(
+                          blurRadius: 5,
+                          offset: Offset(3, 3),
+                          color: Colors.black26)
+                    ],
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(
+                        Icons.star,
+                        color: secondaryColor,
+                        size: 30,
+                      ),
+                      Text(
+                        widget.restaurant.rating.toStringAsPrecision(2),
+                        style: const TextStyle(fontSize: 24),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Consumer<RestaurantDetailsProvider>(
+            builder: (_, provider, __) {
+              switch (provider.state) {
+                case ResultState.loading:
+                  return const Center(child: CircularProgressIndicator());
+
+                case ResultState.hasData:
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(
+                          height: 24,
+                        ),
+                        Row(
+                          children: [
+                            const Icon(
+                              Icons.room_service,
+                              color: primaryColor,
+                            ),
+                            const SizedBox(
+                              width: 8,
+                            ),
+                            Expanded(
+                              child: Text(
                                 provider.result.restaurant.categories
                                     .map((c) => c.name)
                                     .join(", "),
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold),
-                              )
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          Row(
-                            children: [
-                              const Icon(
-                                Icons.location_on,
-                                color: primaryColor,
                               ),
-                              const SizedBox(
-                                width: 8,
-                              ),
-                              Text(
+                            )
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        Row(
+                          children: [
+                            const Icon(
+                              Icons.location_on,
+                              color: primaryColor,
+                            ),
+                            const SizedBox(
+                              width: 8,
+                            ),
+                            Expanded(
+                              child: Text(
                                 '${provider.result.restaurant.city}, ${provider.result.restaurant.address}',
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold),
                               ),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          ReadMoreText(
-                            restaurant.description,
-                            trimLines: 4,
-                            trimCollapsedText: ' Show More',
-                            trimExpandedText: ' Show Less',
-                            colorClickableText: primaryColor,
-                            style: const TextStyle(),
-                          ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          const Text(
-                            'Food',
-                            style: TextStyle(
-                                fontFamily: 'Hero',
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20,
-                                color: primaryColor),
-                          ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          ...provider.result.restaurant.menus.foods.map(
-                              (food) =>
-                                  _buildRestaurantItem(context, food.name)),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          const Text(
-                            'Drinks',
-                            style: TextStyle(
-                                fontFamily: 'Hero',
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20,
-                                color: primaryColor),
-                          ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          ...provider.result.restaurant.menus.drinks.map(
-                              (drink) =>
-                                  _buildRestaurantItem(context, drink.name)),
-                        ],
-                      ),
-                    );
-                  case ResultState.noData:
-                    return const Center(
-                      child: Material(
-                        child: Text("Details not found"),
-                      ),
-                    );
-                  case ResultState.error:
-                    return Container(
-                      margin: const EdgeInsets.symmetric(vertical: 16),
-                      child: const Material(
-                        child:
-                            Text("Error: Could not receive data from network"),
-                      ),
-                    );
-                  default:
-                    return const Material(
-                      child: Text(''),
-                    );
-                }
-              },
-            )
-          ],
-        ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        ReadMoreText(
+                          widget.restaurant.description,
+                          trimLines: 4,
+                          trimCollapsedText: ' Show More',
+                          trimExpandedText: ' Show Less',
+                          colorClickableText: primaryColor,
+                          style: const TextStyle(),
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        const Text(
+                          'Food',
+                          style: TextStyle(
+                              fontFamily: 'Hero',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                              color: primaryColor),
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        ...provider.result.restaurant.menus.foods.map(
+                                (food) =>
+                                _buildRestaurantItem(context, food.name)),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        const Text(
+                          'Drinks',
+                          style: TextStyle(
+                              fontFamily: 'Hero',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                              color: primaryColor),
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        ...provider.result.restaurant.menus.drinks.map(
+                                (drink) =>
+                                _buildRestaurantItem(context, drink.name)),
+                      ],
+                    ),
+                  );
+                case ResultState.noData:
+                  return const Center(
+                    child: Material(
+                      child: Text("Details not found"),
+                    ),
+                  );
+                case ResultState.error:
+                  return Container(
+                    margin: const EdgeInsets.symmetric(vertical: 16),
+                    child: const Material(
+                      child:
+                      Text("Error: Could not receive data from network"),
+                    ),
+                  );
+                default:
+                  return const Material(
+                    child: Text(''),
+                  );
+              }
+            },
+          )
+        ],
       ),
     );
   }
@@ -316,6 +334,18 @@ class AddItemWidget extends StatefulWidget {
 class _AddItemWidgetState extends State<AddItemWidget> {
   int itemCount = 0;
 
+  void _incrementItemCount() {
+    setState(() {
+      itemCount++;
+    });
+  }
+
+  void _decrementItemCount() {
+    setState(() {
+      itemCount--;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return (itemCount > 0)
@@ -326,9 +356,7 @@ class _AddItemWidgetState extends State<AddItemWidget> {
                       side: const BorderSide(color: secondaryVariantColor),
                       foregroundColor: secondaryVariantColor),
                   onPressed: () {
-                    setState(() {
-                      itemCount--;
-                    });
+                    _decrementItemCount();
                   },
                   icon: const Icon(Icons.remove)),
               const SizedBox(
@@ -349,9 +377,7 @@ class _AddItemWidgetState extends State<AddItemWidget> {
                       side: const BorderSide(color: secondaryVariantColor),
                       foregroundColor: secondaryVariantColor),
                   onPressed: () {
-                    setState(() {
-                      itemCount++;
-                    });
+                    _incrementItemCount();
                   },
                   icon: const Icon(Icons.add)),
             ],
@@ -365,9 +391,7 @@ class _AddItemWidgetState extends State<AddItemWidget> {
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             onPressed: () {
-              setState(() {
-                itemCount++;
-              });
+              _incrementItemCount();
             },
           );
   }

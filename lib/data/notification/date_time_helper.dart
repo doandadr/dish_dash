@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
 
 class DateTimeHelper {
@@ -5,7 +6,7 @@ class DateTimeHelper {
     // Date and Time format
     final now = DateTime.now();
     final dateFormat = DateFormat('y/M/d');
-    const timeSpecific = "14:12:00"; // Notification time
+    const timeSpecific = "22:41:00"; // Notification time
     final completeFormat = DateFormat('y/M/d H:m:s');
 
     // Today format
@@ -19,6 +20,7 @@ class DateTimeHelper {
     final tomorrowDateAndTime = "$tomorrowDate $timeSpecific";
     var resultTomorrow = completeFormat.parseStrict(tomorrowDateAndTime);
 
+    debugPrint('Alarm set to fire at $timeSpecific');
     return now.isAfter(resultToday) ? resultTomorrow : resultToday;
   }
 }

@@ -21,22 +21,20 @@ class RestaurantDetailsProvider extends ChangeNotifier {
   Future<dynamic> fetchDetailRestaurant(String restaurantId) async {
     try {
       _state = ResultState.loading;
-      notifyListeners();
       final restaurantDetails =
           await apiService.getRestaurantDetails(restaurantId);
       if (restaurantDetails.error == true) {
         _state = ResultState.noData;
-        notifyListeners();
         return _message = "Not Found";
       } else {
         _state = ResultState.hasData;
-        notifyListeners();
         return _detailsResult = restaurantDetails;
       }
     } catch (e) {
       _state = ResultState.error;
-      notifyListeners();
       return _message = 'Error --> $e';
+    } finally {
+      notifyListeners();
     }
   }
 }

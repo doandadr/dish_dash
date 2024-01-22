@@ -90,10 +90,17 @@ class NotificationHelper {
 
   void configureSelectNotificationSubject(String route) {
     selectNotificationSubject.stream.listen((String payload) async {
-      debugPrint("Payload listened");
-      var data = Restaurant.fromJson(json.decode(payload));
-      Navigation.intentWithData(route, data);
-      debugPrint("Navigate to $route with data: ${data.name}");
+      debugPrint("Payload listened: $payload");
+
+      try {
+        var data = Restaurant.fromJson(json.decode(payload));
+        debugPrint("Navigate to $route with data: ${data.name}");
+
+        // Add your navigation logic here
+        Navigation.intentWithData(route, data);
+      } catch (e) {
+        debugPrint("Error parsing payload: $e");
+      }
     });
   }
 }

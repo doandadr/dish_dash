@@ -66,7 +66,6 @@ class MyApp extends StatelessWidget {
           create: (_) => DatabaseProvider(databaseHelper: DatabaseHelper()),
         ),
         ChangeNotifierProvider(create: (_) => SchedulingProvider()),
-
       ],
       child: Consumer<PreferencesProvider>(
         builder:

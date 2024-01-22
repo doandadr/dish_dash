@@ -8,6 +8,7 @@ class PreferencesProvider extends ChangeNotifier {
 
   PreferencesProvider({required this.preferencesHelper}) {
     _getTheme();
+    _getDailyReminderPreferences();
   }
 
   bool _isDarkTheme = false;
