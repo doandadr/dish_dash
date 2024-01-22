@@ -16,10 +16,6 @@ class DetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Provider.of<RestaurantDetailsProvider>(
-      context,
-      listen: false,
-    ).fetchDetailRestaurant(restaurant.id);
     return _buildRestaurantDetails(context);
   }
 
