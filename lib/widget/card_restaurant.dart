@@ -1,11 +1,9 @@
 import 'package:dish_dash/common/navigation.dart';
 import 'package:dish_dash/common/style.dart';
 import 'package:dish_dash/data/model/restaurant.dart';
-import 'package:dish_dash/provider/restaurant_details_provider.dart';
 import 'package:dish_dash/ui/detail_screen.dart';
 import 'package:dish_dash/widget/favorite_button.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class CardRestaurant extends StatelessWidget {
   final Restaurant restaurant;

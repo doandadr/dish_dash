@@ -21,7 +21,7 @@ class ApiService {
 
   Future<RestaurantDetailResult> getRestaurantDetails(String restaurantId) async {
     final response = await http.get(Uri.parse(
-      "${_baseUrl}detail/${restaurantId}"
+      "${_baseUrl}detail/$restaurantId"
     ));
     if (response.statusCode == 200) {
       return RestaurantDetailResult.fromJson(json.decode(response.body));
@@ -32,7 +32,7 @@ class ApiService {
 
   Future<RestaurantSearchResult> searchRestaurants(String query) async {
     final response = await http.get(Uri.parse(
-      "${_baseUrl}search?q=${query}"
+      "${_baseUrl}search?q=$query"
     ));
     if (response.statusCode == 200) {
       return RestaurantSearchResult.fromJson(json.decode(response.body));

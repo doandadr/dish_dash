@@ -1,5 +1,4 @@
 import 'package:dish_dash/common/style.dart';
-import 'package:flutter/foundation.dart';
 import 'package:dish_dash/data/preferences/preferences_helper.dart';
 import 'package:flutter/material.dart';
 

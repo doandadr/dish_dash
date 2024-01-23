@@ -6,7 +6,6 @@ import 'package:dish_dash/provider/scheduling_provider.dart';
 import 'package:dish_dash/widget/custom_dialog.dart';
 import 'package:dish_dash/widget/platform_widget.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
